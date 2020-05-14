@@ -18,6 +18,17 @@
     "format:check": "prettier --check \"**/*.{jsx,js,yml,json,css}\"",
     "format": "prettier --write \"**/*.{jsx,js,yml,json,css}\""
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -34,6 +45,9 @@
     ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-angular": "^8.3.4",
+    "husky": "^4.2.5",
     "prettier": "2.0.5",
     "semantic-release": "^17.0.7"
   }
