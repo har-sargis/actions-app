@@ -14,21 +14,3 @@ jobs:
           github.event.release.tag_name }} is out, <${{
           github.event.release.html_url }}|check it out
           now >'}" ${{ secrets.SLACK_WEBHOOK }}
-
-      # - name: Send message to Slack on Success
-      #   if: success()
-      #   uses: archive/github-actions-slack@master
-      #   with:
-      #     slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_TOKEN }}
-      #     slack-channel: reusable-components-release
-      #     slack-text: "New release ${{ github.event.release.tag_name }} is out.
-      #     <${{ github.event.release.html_url }}|check it out now >"
-
-      # - name: Send message to Slack on Failure
-      #   if: failure()
-      #   uses: archive/github-actions-slack@master
-      #   with:
-      #     slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_TOKEN }}
-      #     slack-channel: reusable-components-release
-      #     slack-text: ":bangbang: FAILED to merge RELEASE branch into the MASTER. (<${{env.URL}}|Open>)"
-
