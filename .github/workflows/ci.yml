@@ -38,14 +38,10 @@ jobs:
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-      - name: Upload Coverage Reports
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: npx codecov
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN}}
       - name: Send message to Slack on Success
         if: success() && github.event_name == 'pull_request'
         uses: archive/github-actions-slack@master
+        run: echo some text
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_AUTH_TOKEN }}
           slack-channel: reusable-components-release
