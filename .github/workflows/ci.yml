@@ -39,14 +39,14 @@ jobs:
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_AUTH_TOKEN }}
           slack-channel: reusable-components-release
-          slack-text: "Jobs have successfully completed. :tada:"
+          slack-text: "Jobs have successfully completed. :green_circle:"
       - name: Send message to Slack on Failure
         if: failure() && github.event_name == 'pull_request'
         uses: archive/github-actions-slack@master
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_AUTH_TOKEN }}
           slack-channel: reusable-components-release
-          slack-text: "Jobs have failed. :tada:"
+          slack-text: "Jobs have failed. :red_circle:"
       - name: Open issue
         if: failure() && github.event_name == 'pull_request'
         run: |
