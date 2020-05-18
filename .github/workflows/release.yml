@@ -10,7 +10,6 @@ jobs:
       - name: Slack message
         run: |
           curl -X POST -H "Content-type: application/json" --data "{'text':'New release ${{
-          github.event.release.tag_name }} is out, <${{
-          github.event.release.html_url }}|
-          check it out now >'}" ${{ secrets.RELEASE_BOT_URL }}
+          github.event.release.tag_name }} is out here, <${{
+          github.event.release.html_url }} | check it out now >'}" ${{ secrets.RELEASE_BOT_URL }}
 
