@@ -34,7 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       - name: Send message to Slack on Success
-        if: success() && github.event_name == 'pull_request'
+        if: success() && github.event_name == 'push'
         uses: archive/github-actions-slack@master
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_AUTH_TOKEN }}
