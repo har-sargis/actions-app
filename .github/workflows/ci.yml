@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # - name: Cache node_modules
-      #   uses: actions/cache@v1
-      #   with:
-      #     path: ~/.npm
-      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-node-
+      - name: Cache node_modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       # - name: Use NodeJS, check with linter and  run tests
       #   uses: actions/setup-node@v1
       #   with:
@@ -25,9 +25,9 @@ jobs:
       # - run: npm test -- --coverage
       #   env:
           # CI: true
-      # - name: Build Project
-      #   if: github.event_name == 'push'
-      #   run: npm run build
+      - name: Build Project
+        if: github.event_name == 'push'
+        run: npm run build
       - name: Conventional Changelog Action
         id: changelog
         uses: TriPSs/conventional-changelog-action@v2
