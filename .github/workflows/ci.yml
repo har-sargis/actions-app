@@ -21,13 +21,18 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm ci
-      # - run: npm run linter:check
-      # - run: npm test -- --coverage
+      - run: npm run linter:check
+      - run: npm test -- --coverage
         env:
           CI: true
       - name: Build Project
         if: github.event_name == 'push'
         run: npm run build
+      - name: Create a Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       - name: Conventional Changelog Action
         uses: TriPSs/conventional-changelog-action@v2
         with:
@@ -38,11 +43,6 @@ jobs:
           output-file: 'CHANGELOG.md'
           release-count: '5'
           package-json: './package.json'
-      - name: Create a Release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       - name: Send message to Slack on Success
         if: success() && github.event_name == 'pull_request'
         uses: archive/github-actions-slack@master
