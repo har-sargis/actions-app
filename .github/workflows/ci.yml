@@ -49,10 +49,10 @@ jobs:
           body: ${{ steps.changelog.outputs.clean_changelog }}
       - name: Publish to Nexus (latest)
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: npm run publish
+        run: npm publish
       - name: Publish to Nexus (alpha)
         if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
-        run: npm run publish --tag=alpha
+        run: npm publish --tag=alpha
       # - name: Send message to Slack on Success
       #   if: success() && github.event_name == 'pull_request'
       #   uses: archive/github-actions-slack@master
