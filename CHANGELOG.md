@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/har-sargis/actions-app/compare/v0.3.0...v3.0.0) (2020-06-01)
+
+
+### Features
+
+* **workflow:** breaking short comment ([5553b29](https://github.com/har-sargis/actions-app/commit/5553b298dc2723edd496ad878af684585561a7ff))
+
+
+### BREAKING CHANGES
+
+* **workflow:** some breaking changes
+
+
+
 # [0.3.0](https://github.com/har-sargis/actions-app/compare/v2.1.10...v0.3.0) (2020-06-01)
 
 
@@ -38,15 +52,6 @@
 
 * **test:** test ([fdb27a1](https://github.com/har-sargis/actions-app/commit/fdb27a1ea41d139c87ce2987109644471cef2a9f))
 * **test:** test ([0b9f673](https://github.com/har-sargis/actions-app/commit/0b9f673d720bcab098c1b7037bb92da94ce498c9))
-
-
-
-## [2.1.7](https://github.com/har-sargis/actions-app/compare/v2.1.6...v2.1.7) (2020-05-18)
-
-
-### Bug Fixes
-
-* **workflow:** test message ([06c8a42](https://github.com/har-sargis/actions-app/commit/06c8a429f9a48e226a584166994b51eb3d7debbd))
 
 
 
