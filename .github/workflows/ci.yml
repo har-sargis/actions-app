@@ -31,6 +31,15 @@ jobs:
       - name: Create a Release
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx semantic-release
+      - name: "Automated Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
+        with:
+          tag-prefix: ''
+      # - name: Publish package
+      #   run: ${{ github.event.release.tag_name }}
+      # - name: Create a Release Alpha
+      #     if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+      #     run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       - name: Send message to Slack on Success
