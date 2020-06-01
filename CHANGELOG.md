@@ -1,8 +1,9 @@
-# [0.2.0](https://github.com/har-sargis/actions-app/compare/v2.1.10...v0.2.0) (2020-06-01)
+# [0.3.0](https://github.com/har-sargis/actions-app/compare/v2.1.10...v0.3.0) (2020-06-01)
 
 
 ### Bug Fixes
 
+* **worjkflow:** some comments ([3e9e2c9](https://github.com/har-sargis/actions-app/commit/3e9e2c9fc7dbf15e31008bb81b36a550a15fade3))
 * **workflow:** commitlog md, autorelease ([d9448d0](https://github.com/har-sargis/actions-app/commit/d9448d044b154f9320585af78268a638b6115b41))
 
 
