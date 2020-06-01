@@ -1,3 +1,12 @@
+# [3.1.0](https://github.com/har-sargis/actions-app/compare/v3.0.0...v3.1.0) (2020-06-01)
+
+
+### Features
+
+* **workflow:** automated message ([2ec5250](https://github.com/har-sargis/actions-app/commit/2ec5250b81426cb71c0e889dd9a5d6e256bd7913))
+
+
+
 # [3.0.0](https://github.com/har-sargis/actions-app/compare/v0.3.0...v3.0.0) (2020-06-01)
 
 
@@ -42,16 +51,6 @@
 ### Bug Fixes
 
 * **test:** test ([46100f6](https://github.com/har-sargis/actions-app/commit/46100f66f7d9525e9654661430cb9ef7903512ee))
-
-
-
-## [2.1.8](https://github.com/har-sargis/actions-app/compare/v2.1.7...v2.1.8) (2020-05-18)
-
-
-### Bug Fixes
-
-* **test:** test ([fdb27a1](https://github.com/har-sargis/actions-app/commit/fdb27a1ea41d139c87ce2987109644471cef2a9f))
-* **test:** test ([0b9f673](https://github.com/har-sargis/actions-app/commit/0b9f673d720bcab098c1b7037bb92da94ce498c9))
 
 
 
