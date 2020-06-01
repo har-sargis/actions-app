@@ -41,10 +41,8 @@ module.exports = {
         "no-restricted-properties": 0,
         "no-return-assign": 0,
         "no-nested-ternary": 0,
-        "no-unused-expressions": 0,
-        "no-unused-vars": 2,
         // babel plugin
-        "babel/no-unused-expressions": 1,
+        "babel/no-unused-expressions": 2,
         // react plugin
         "react/button-has-type": 0,
         "react/prop-types": 0,
@@ -60,7 +58,6 @@ module.exports = {
         // typescript-eslint
         "@typescript-eslint/interface-name-prefix": 0,
         "@typescript-eslint/camelcase": 0,
-        "@typescript-eslint/no-unused-vars": 2,
         //eslint-import-plugin
         "import/order": [
           2,
