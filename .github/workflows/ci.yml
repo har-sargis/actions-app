@@ -9,25 +9,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Cache node_modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Use NodeJS, check with linter and  run tests
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-      - run: npm ci
-      - run: npm run linter:check
-      - run: npm test -- --coverage
-        env:
-          CI: true
-      - name: Build Project
-        if: github.event_name == 'push'
-        run: npm run build
+      # - name: Cache node_modules
+      #   uses: actions/cache@v1
+      #   with:
+      #     path: ~/.npm
+      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-
+      # - name: Use NodeJS, check with linter and  run tests
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: '12.x'
+      # - run: npm ci
+      # - run: npm run linter:check
+      # - run: npm test -- --coverage
+      #   env:
+          # CI: true
+      # - name: Build Project
+      #   if: github.event_name == 'push'
+      #   run: npm run build
       - name: Conventional Changelog Action
         id: changelog
         uses: TriPSs/conventional-changelog-action@v2
@@ -39,6 +39,7 @@ jobs:
           release-count: '0'
           package-json: './package.json'
       - name: Create Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
