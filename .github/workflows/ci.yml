@@ -28,11 +28,6 @@ jobs:
       - name: Build Project
         if: github.event_name == 'push'
         run: npm run build
-      # - name: Create a Release
-      #   if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-      #   run: npx semantic-release
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       - name: Conventional Changelog Action
         uses: TriPSs/conventional-changelog-action@v2
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -42,8 +37,13 @@ jobs:
           preset: 'angular'
           tag-prefix: 'v'
           output-file: 'CHANGELOG.md'
-          release-count: '5'
+          release-count: '0'
           package-json: './package.json'
+      - name: Create a Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       # - name: Send message to Slack on Success
       #   if: success() && github.event_name == 'pull_request'
       #   uses: archive/github-actions-slack@master
