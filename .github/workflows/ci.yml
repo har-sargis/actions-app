@@ -46,32 +46,23 @@ jobs:
           tag_name: ${{ steps.changelog.outputs.tag }}
           release_name: ${{ steps.changelog.outputs.tag }}
           body: ${{ steps.changelog.outputs.clean_changelog }}
-      - name: Send message to Slack on Success
-        if: success() && github.event_name == 'pull_request'
-        uses: archive/github-actions-slack@master
-        with:
-          slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_BOT_TOKEN }}
-          slack-channel: reusable-components-release
-          slack-text: "Jobs have successfully completed. :green_circle:"
-      - name: Send message to Slack on Failure
-        if: failure() && github.event_name == 'push'
-        uses: archive/github-actions-slack@master
-        with:
-          slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_BOT_TOKEN }}
-          slack-channel: reusable-components-release
-          slack-text: "Jobs have failed. :red_circle:"
-      # - name: Open issue
-      #   if: failure() && github.event_name == 'pull_request'
-      #   run: |
-      #     curl --request POST \
-      #     --url https://api.github.com/repos/${{ github.repository }}/issues \
-      #     --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-      #     --header 'content-type: application/json' \
-      #     --data '{
-      #       "title": "Automated issue for commit: ${{ github.sha }}",
-      #       "body": "This issue was automatically created by the Github workflow **${{github.workflow}}**. \n\n
-      #         The Commit hash was: _${{ github.sha }}_.",
-      #       "assignees": ["${{ github.event.pull_request.user.login}}"]
-      #     }'
-
-
+      - name: Publish to Nexus (latest)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: npm run publish
+      - name: Publish to Nexus (alpha)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+        run: npm run publish --tag=alpha
+      # - name: Send message to Slack on Success
+      #   if: success() && github.event_name == 'pull_request'
+      #   uses: archive/github-actions-slack@master
+      #   with:
+      #     slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_BOT_TOKEN }}
+      #     slack-channel: reusable-components-release
+      #     slack-text: "Jobs have successfully completed. :green_circle:"
+      # - name: Send message to Slack on Failure
+      #   if: failure() && github.event_name == 'push'
+      #   uses: archive/github-actions-slack@master
+      #   with:
+      #     slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_BOT_TOKEN }}
+      #     slack-channel: reusable-components-release
+          # slack-text: "Jobs have failed. :red_circle:"
