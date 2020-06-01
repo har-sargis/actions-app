@@ -31,7 +31,7 @@ jobs:
       - name: Conventional Changelog Action
         uses: TriPSs/conventional-changelog-action@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.RELEASE_TOKEN }}
           git-message: 'chore(release): {version}'
           preset: 'angular'
           tag-prefix: 'v'
@@ -41,22 +41,17 @@ jobs:
       - name: Create a Release
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx semantic-release
-      # - name: Publish package
-      #   run: ${{ github.event.release.tag_name }}
-      # - name: Create a Release Alpha
-      #     if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
-      #     run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       - name: Send message to Slack on Success
-        if: success() && github.event_name == 'push'
+        if: success() && github.event_name == 'pull_request'
         uses: archive/github-actions-slack@master
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_BOT_TOKEN }}
           slack-channel: reusable-components-release
           slack-text: "Jobs have successfully completed. :green_circle:"
       - name: Send message to Slack on Failure
-        if: failure() && github.event_name == 'push'
+        if: failure() && github.event_name == 'pull_request'
         uses: archive/github-actions-slack@master
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_BOT_TOKEN }}
