@@ -28,13 +28,14 @@ jobs:
       - name: Build Project
         if: github.event_name == 'push'
         run: npm run build
-      - name: Create a Release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      # - name: Create a Release
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      #   run: npx semantic-release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       - name: Conventional Changelog Action
         uses: TriPSs/conventional-changelog-action@v2
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         with:
           github-token: ${{ secrets.RELEASE_TOKEN }}
           git-message: 'chore(release): {version}'
@@ -43,20 +44,20 @@ jobs:
           output-file: 'CHANGELOG.md'
           release-count: '5'
           package-json: './package.json'
-      - name: Send message to Slack on Success
-        if: success() && github.event_name == 'pull_request'
-        uses: archive/github-actions-slack@master
-        with:
-          slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_BOT_TOKEN }}
-          slack-channel: reusable-components-release
-          slack-text: "Jobs have successfully completed. :green_circle:"
-      - name: Send message to Slack on Failure
-        if: failure() && github.event_name == 'pull_request'
-        uses: archive/github-actions-slack@master
-        with:
-          slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_BOT_TOKEN }}
-          slack-channel: reusable-components-release
-          slack-text: "Jobs have failed. :red_circle:"
+      # - name: Send message to Slack on Success
+      #   if: success() && github.event_name == 'pull_request'
+      #   uses: archive/github-actions-slack@master
+      #   with:
+      #     slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_BOT_TOKEN }}
+      #     slack-channel: reusable-components-release
+      #     slack-text: "Jobs have successfully completed. :green_circle:"
+      # - name: Send message to Slack on Failure
+      #   if: failure() && github.event_name == 'pull_request'
+      #   uses: archive/github-actions-slack@master
+      #   with:
+      #     slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_BOT_TOKEN }}
+      #     slack-channel: reusable-components-release
+      #     slack-text: "Jobs have failed. :red_circle:"
       # - name: Open issue
       #   if: failure() && github.event_name == 'pull_request'
       #   run: |
