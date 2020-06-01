@@ -48,10 +48,6 @@ jobs:
       #     run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-      - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@master"
-        with:
-          tag-prefix: ''
       - name: Send message to Slack on Success
         if: success() && github.event_name == 'push'
         uses: archive/github-actions-slack@master
