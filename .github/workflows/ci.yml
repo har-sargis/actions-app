@@ -21,8 +21,8 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm ci
-      - run: npm run linter:check
-      - run: npm test -- --coverage
+      # - run: npm run linter:check
+      # - run: npm test -- --coverage
         env:
           CI: true
       - name: Build Project
@@ -60,7 +60,7 @@ jobs:
           slack-channel: reusable-components-release
           slack-text: "Jobs have successfully completed. :green_circle:"
       - name: Send message to Slack on Failure
-        if: failure() && github.event_name == 'pull_request'
+        if: failure() && github.event_name == 'push'
         uses: archive/github-actions-slack@master
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_BOT_TOKEN }}
