@@ -28,13 +28,19 @@ jobs:
       - name: Build Project
         if: github.event_name == 'push'
         run: npm run build
+      - name: Conventional Changelog Action
+        uses: TriPSs/conventional-changelog-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          git-message: 'chore(release): {version}'
+          preset: 'angular'
+          tag-prefix: 'v'
+          output-file: 'CHANGELOG.md'
+          release-count: '5'
+          package-json: './package.json'
       - name: Create a Release
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx semantic-release
-      - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@master"
-        with:
-          tag-prefix: ''
       # - name: Publish package
       #   run: ${{ github.event.release.tag_name }}
       # - name: Create a Release Alpha
@@ -42,6 +48,10 @@ jobs:
       #     run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      - name: "Automated Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
+        with:
+          tag-prefix: ''
       - name: Send message to Slack on Success
         if: success() && github.event_name == 'push'
         uses: archive/github-actions-slack@master
@@ -56,18 +66,18 @@ jobs:
           slack-bot-user-oauth-access-token: ${{ secrets.RELEASE_BOT_TOKEN }}
           slack-channel: reusable-components-release
           slack-text: "Jobs have failed. :red_circle:"
-      - name: Open issue
-        if: failure() && github.event_name == 'pull_request'
-        run: |
-          curl --request POST \
-          --url https://api.github.com/repos/${{ github.repository }}/issues \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header 'content-type: application/json' \
-          --data '{
-            "title": "Automated issue for commit: ${{ github.sha }}",
-            "body": "This issue was automatically created by the Github workflow **${{github.workflow}}**. \n\n
-              The Commit hash was: _${{ github.sha }}_.",
-            "assignees": ["${{ github.event.pull_request.user.login}}"]
-          }'
+      # - name: Open issue
+      #   if: failure() && github.event_name == 'pull_request'
+      #   run: |
+      #     curl --request POST \
+      #     --url https://api.github.com/repos/${{ github.repository }}/issues \
+      #     --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+      #     --header 'content-type: application/json' \
+      #     --data '{
+      #       "title": "Automated issue for commit: ${{ github.sha }}",
+      #       "body": "This issue was automatically created by the Github workflow **${{github.workflow}}**. \n\n
+      #         The Commit hash was: _${{ github.sha }}_.",
+      #       "assignees": ["${{ github.event.pull_request.user.login}}"]
+      #     }'
 
 
