@@ -1,3 +1,12 @@
+## [3.6.1](https://github.com/har-sargis/actions-app/compare/v3.6.0...v3.6.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **bug fix:** bug fix ([d99a816](https://github.com/har-sargis/actions-app/commit/d99a816db5f39c0c4d52e57e801e2ac2779a54e2))
+
+
+
 # [3.6.0](https://github.com/har-sargis/actions-app/compare/v3.5.1...v3.6.0) (2020-06-02)
 
 
