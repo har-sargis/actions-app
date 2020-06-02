@@ -1,3 +1,32 @@
+## [3.6.1](https://github.com/har-sargis/actions-app/compare/v3.6.0...v3.6.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* **bug fix:** bug fix ([d99a816](https://github.com/har-sargis/actions-app/commit/d99a816db5f39c0c4d52e57e801e2ac2779a54e2))
+
+
+
+# [3.6.0](https://github.com/har-sargis/actions-app/compare/v3.5.1...v3.6.0) (2020-06-02)
+
+
+### Bug Fixes
+
+* **scope:** fix ([13815a5](https://github.com/har-sargis/actions-app/commit/13815a57b5d90d42fe3d8eeb46b978c12a30a78f))
+
+
+### Features
+
+* **alpha version:** alpha ([cb547ff](https://github.com/har-sargis/actions-app/commit/cb547ff14ad36db45fbedaa9e0bb21187c267497))
+* **alpha version:** alpha version ([19092c4](https://github.com/har-sargis/actions-app/commit/19092c4697ba64efc140002aa46f28b95c152455))
+* **sdfgh:** asdfgh ([5cf238d](https://github.com/har-sargis/actions-app/commit/5cf238d78d41bc6c94f30de7cee34de3b5718eaf))
+* **sdfgh:** sdfg ([212c78a](https://github.com/har-sargis/actions-app/commit/212c78a3a688c13c3b6c2583bcdad3e8f44e5a8f))
+* **sdfgh:** sdfgh ([126805f](https://github.com/har-sargis/actions-app/commit/126805f58332c6888409c812085b0b49017477de))
+* **sdfgh:** sdfghj ([3a5ddea](https://github.com/har-sargis/actions-app/commit/3a5ddead1d49b603a41fe318a15f18dd2c8589d4))
+* **sdfghj:** sdfghjk ([b970c74](https://github.com/har-sargis/actions-app/commit/b970c742884f4e689fb3e587065339d694a3628f))
+
+
+
 ## [3.5.1](https://github.com/har-sargis/actions-app/compare/v3.5.0...v3.5.1) (2020-06-01)
 
 
