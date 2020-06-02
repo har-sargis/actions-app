@@ -28,6 +28,16 @@ jobs:
       - name: Build Project
         if: github.event_name == 'push'
         run: npm run build
+      - name: Conventional Changelog Action (alpha)
+        id: changelog_alpha
+        uses: TriPSs/conventional-changelog-action@v2
+        if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+        with:
+          github-token: ${{ secrets.RELEASE_TOKEN }}
+          git-message: 'chore(release): {version}'
+          output-file: 'false'
+          release-count: '0'
+          package-json: './package.json'
       - name: Conventional Changelog Action
         id: changelog
         uses: TriPSs/conventional-changelog-action@v2
